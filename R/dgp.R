@@ -10,8 +10,8 @@
 #' to right
 
 dgp <- function(nObs, nCov, nNonZero){
-  X <- cbind(rep(1, nObs), matrix(runif(nObs * nCov), nrow = nObs))
-  y <- rowSums(X[, 2:(2 + nNonZero)]) + rnorm(nObs, mean = 0, sd = 1)
+  X <-matrix(runif(nObs * nCov, min = -1, max = 1), nrow = nObs)
+  y <- rowSums(X[, 0:nNonZero, drop = FALSE]) + rnorm(nObs, mean = 0, sd = 1)
   df <- data.frame(y, X)
   return(df)
 }
