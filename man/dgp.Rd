@@ -15,7 +15,7 @@ dgp(nObs, nCov, nNonZero)
 to right}
 }
 \description{
-Generates data on where the outcome is the sum of nCov uniform(-1, 1) random
-variables. All covariates are set to 0 by default, then a number corresponding
-to nNonZero are changed to one.
+Generates nObs observations where the outcome (y) is the sum of nNonZero  out of
+nCov uniform(-1, 1) random variables. The covariates with non-zero coefficients
+are always the nNonZero first covariates.
 }
