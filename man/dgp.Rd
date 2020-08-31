@@ -4,7 +4,7 @@
 \alias{dgp}
 \title{Generates data from a linear model}
 \usage{
-dgp(nObs, nCov, nNonZero)
+dgp(nObs, nCov, nNonZero, trueMean = FALSE)
 }
 \arguments{
 \item{nObs}{Number of observations}
@@ -13,6 +13,9 @@ dgp(nObs, nCov, nNonZero)
 
 \item{nNonZero}{Number of covariates with coefficients set to one, from left
 to right}
+
+\item{trueMean}{If TRUE, returns response/outcome without noise. Defaults to
+false}
 }
 \description{
 Generates nObs observations where the outcome (y) is the sum of nNonZero  out of
