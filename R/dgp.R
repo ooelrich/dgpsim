@@ -1,24 +1,22 @@
 #' Generates data from a linear model
 #'
-#' Generates nObs observations where the outcome (y) is the sum of nNonZero  out of
-#' nCov uniform(-1, 1) random variables. The covariates with non-zero coefficients
-#' are always the nNonZero first covariates.
+#' Generates n_obs observations where the outcome (y) is the weighted sum, with
+#' weights given by beta_coefs, of a number of independent uniform(-1, 1)
+#' distributed random variables.
 #'
-#' @param nObs Number of observations
-#' @param nCov Number of covariates, excluding intercept
-#' @param nNonZero Number of covariates with coefficients set to one, from left
-#' to right
+#' @param n_obs Number of observations
+#' @param beta_coefs Vector of beta coefficients. The length of the vector will
+#' determine the number of covariates
 #' @param trueMean If TRUE, returns response/outcome without noise. Defaults to
 #' false
-#' @param beta_coefs Vector of length nCov containing beta coefficients. Defaults to a vector of ones.
 
-dgp <- function(nObs, nCov, nNonZero, trueMean = FALSE,
-                beta_coefs = rep(1, nCov)){
+dgp <- function(n_obs, beta_coefs, true_mean = FALSE){
 
-  X <- matrix(runif(nObs * nCov, min = -1, max = 1), nrow = nObs)
-  y <- X[, 0:nNonZero, drop = FALSE]  %*% as.matrix(beta_coefs)
-  if (trueMean == FALSE) {
-    y <- y + rnorm(nObs, mean = 0, sd = 1)
+  n_cov <- length(beta_coefs)
+  X <- matrix(runif(n_obs * n_cov, min = -1, max = 1), nrow = n_obs)
+  y <- X  %*% as.matrix(beta_coefs)
+  if (true_mean == FALSE) {
+    y <- y + rnorm(n_obs, mean = 0, sd = 1)
   }
   df <- data.frame(y, X)
   return(df)

@@ -4,23 +4,19 @@
 \alias{dgp}
 \title{Generates data from a linear model}
 \usage{
-dgp(nObs, nCov, nNonZero, trueMean = FALSE, beta_coefs = rep(1, nCov))
+dgp(n_obs, beta_coefs, true_mean = FALSE)
 }
 \arguments{
-\item{nObs}{Number of observations}
+\item{n_obs}{Number of observations}
 
-\item{nCov}{Number of covariates, excluding intercept}
-
-\item{nNonZero}{Number of covariates with coefficients set to one, from left
-to right}
+\item{beta_coefs}{Vector of beta coefficients. The length of the vector will
+determine the number of covariates}
 
 \item{trueMean}{If TRUE, returns response/outcome without noise. Defaults to
 false}
-
-\item{beta_coefs}{Vector of length nCov containing beta coefficients. Defaults to a vector of ones.}
 }
 \description{
-Generates nObs observations where the outcome (y) is the sum of nNonZero  out of
-nCov uniform(-1, 1) random variables. The covariates with non-zero coefficients
-are always the nNonZero first covariates.
+Generates n_obs observations where the outcome (y) is the weighted sum, with
+weights given by beta_coefs, of a number of independent uniform(-1, 1)
+distributed random variables.
 }
