@@ -10,10 +10,13 @@
 #' to right
 #' @param trueMean If TRUE, returns response/outcome without noise. Defaults to
 #' false
+#' @param beta_coefs Vector of length nCov containing beta coefficients. Defaults to a vector of ones.
 
-dgp <- function(nObs, nCov, nNonZero, trueMean = FALSE){
+dgp <- function(nObs, nCov, nNonZero, trueMean = FALSE,
+                beta_coefs = rep(1, nCov)){
+
   X <- matrix(runif(nObs * nCov, min = -1, max = 1), nrow = nObs)
-  y <- rowSums(X[, 0:nNonZero, drop = FALSE])
+  y <- X[, 0:nNonZero, drop = FALSE]  %*% as.matrix(beta_coefs)
   if (trueMean == FALSE) {
     y <- y + rnorm(nObs, mean = 0, sd = 1)
   }

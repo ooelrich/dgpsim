@@ -4,7 +4,7 @@
 \alias{dgp}
 \title{Generates data from a linear model}
 \usage{
-dgp(nObs, nCov, nNonZero, trueMean = FALSE)
+dgp(nObs, nCov, nNonZero, trueMean = FALSE, beta_coefs = rep(1, nCov))
 }
 \arguments{
 \item{nObs}{Number of observations}
@@ -16,6 +16,8 @@ to right}
 
 \item{trueMean}{If TRUE, returns response/outcome without noise. Defaults to
 false}
+
+\item{beta_coefs}{Vector of length nCov containing beta coefficients. Defaults to a vector of ones.}
 }
 \description{
 Generates nObs observations where the outcome (y) is the sum of nNonZero  out of
